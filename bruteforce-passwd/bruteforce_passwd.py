@@ -1,4 +1,5 @@
 import itertools
+import re
 
 words = []
 
@@ -24,12 +25,18 @@ def bruteforce_passwd(word_casing=False, letter_by_letter=False, number_of_words
         for word in word_combinations:
             print("Now considering sequence:", word)
 
-            # Uppercase letter by letter (warning! this creates really much output)
+            # Uppercase letter by letter (warning! this creates huge amounts of output)
             if letter_by_letter:
                 word = ''.join(word)
             letter_combination = map(''.join, itertools.product(*((c.upper(), c.lower()) for c in word)))
 
             for letter in letter_combination:
+                # Don't capitalize characters that are numbers/special-character
+                specialChar = re.search('^[^a-zA-Zæøå]*$', letter)
+                if specialChar:
+                    print(specialChar)
+                    # break out of inner for-loop
+                    continue
                 n += 1
                 print(letter)
         print(n, "permutations.")
@@ -47,7 +54,7 @@ def main():
     readfile()
     print("Bruteforcing...")
     # Set number_of_words=None to use all words in wordlist.txt
-    bruteforce_passwd(word_casing=True, letter_by_letter=True, number_of_words=None)
+    bruteforce_passwd(word_casing=True, letter_by_letter=True, number_of_words=3)
 
 
 if __name__ == "__main__":
