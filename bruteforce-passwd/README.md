@@ -4,8 +4,8 @@ Pretty self explanatory, no?
 
 Generates a wordlist with different combinations which can be used for a bruteforce attack.
 
-## How it works
-Add any string to [wordlist.txt](wordlist.txt) - seperate with a new line.
+## Usage
+Add any string to [wordlist.txt](wordlist.txt) - separate with a new line.
 
 Look for this function inside the ```main```-method:
 ```python
